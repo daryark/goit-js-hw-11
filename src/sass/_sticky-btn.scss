@@ -1,0 +1,21 @@
+.sticky {
+  position: fixed;
+  top: 500px;
+  left: calc(100vw - 100px);
+  // display: none;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-style: none;
+  background-color: transparent;
+
+  & p {
+    font-size: 30px;
+  }
+}

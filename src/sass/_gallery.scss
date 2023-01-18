@@ -1,0 +1,42 @@
+.gallery {
+  margin: 20px;
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #ffffff17;
+}
+
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+  width: 250px;
+  padding: 5px;
+  border: 1px solid #ffffff08;
+
+  & img {
+    min-height: 150px;
+    width: 240px;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(1);
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.info-item {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 10px;
+}
+
+.load-more {
+  margin: 0 auto;
+  display: block;
+
+  background-color: #bbd5ff;
+}
