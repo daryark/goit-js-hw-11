@@ -1,6 +1,6 @@
 const galleryContainer = document.querySelector('.gallery');
 
-export function renderPhotos({ data: { hits } }) {
+export function renderPhotos({ hits }) {
   const markup = hits
     .map(
       ({

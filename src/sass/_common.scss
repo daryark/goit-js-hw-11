@@ -1,9 +1,10 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
 body {
+  padding: 20px 30px;
+  height: 100vh;
   background-color: #14161a;
   color: #bbd5ff;
-  padding: 20px 10px;
 }
 
 .hidden {
@@ -18,4 +19,9 @@ body {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.💙 {
+  text-align: center;
+  padding-bottom: 20px;
 }

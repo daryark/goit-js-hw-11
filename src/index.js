@@ -61,19 +61,13 @@ function hideLoadMoreBtn(res) {
   return res;
 }
 
-//fix can i change it or do i really need it?
 function onInputClear() {
   if (!form.elements.searchQuery.value) {
     galleryContainer.innerHTML = '';
   }
 }
-// function clearContent() {
-//   galleryContainer.innerHTML = '';
-//   form.reset();
-// }
 
 function errorMessage() {
-  console.log('no photos');
   Notify.failure(
     'Sorry, there are no images matching your search query. Please try again.'
   );
