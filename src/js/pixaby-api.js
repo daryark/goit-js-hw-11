@@ -10,10 +10,10 @@ export class PixabayAPI {
     this.q = null;
   }
 
-  async fetchPhotosByQ() {
+  fetchPhotosByQ() {
     const { q, page } = this;
 
-    const result = await axios.get(`${PixabayAPI.BASE_URL}`, {
+    return axios.get(`${PixabayAPI.BASE_URL}`, {
       params: {
         key: PixabayAPI.API_KEY,
         q,
@@ -24,6 +24,5 @@ export class PixabayAPI {
         per_page: PixabayAPI.per_page,
       },
     });
-    return result;
   }
 }
