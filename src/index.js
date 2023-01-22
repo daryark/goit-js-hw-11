@@ -6,15 +6,17 @@ import { renderPhotos } from './js/markup';
 import { PixabayAPI } from './js/pixaby-api';
 const pixabayAPI = new PixabayAPI();
 
+//elements' querySelctors
 const form = document.querySelector('form');
 const galleryContainer = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
+//eventListeners on els
 form.addEventListener('submit', onSubmit);
 loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 form.elements.searchQuery.addEventListener('input', onInputClear);
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
 
   galleryContainer.innerHTML = '';
@@ -22,32 +24,38 @@ function onSubmit(e) {
   pixabayAPI.q = e.currentTarget.elements.searchQuery.value;
   pixabayAPI.page = 1;
 
-  pixabayAPI
-    .fetchPhotosByQ()
-    .then(res => {
-      if (!res.data.hits.length) {
-        throw new Error();
-      }
-      return res;
-    })
-    .then(showLoadMoreBtn)
-    .then(renderPhotos)
-    .catch(errorMessage)
-    .finally(_ => form.reset());
+  try {
+    const fetchResult = await pixabayAPI.fetchPhotosByQ();
+
+    loadMoreBtn.classList.add('hidden');
+
+    if (!fetchResult.data.hits.length) {
+      throw new Error();
+    }
+
+    showLoadMoreBtn(fetchResult);
+    renderPhotos(fetchResult);
+  } catch {
+    errorMessage();
+  }
+  form.reset();
 }
 
-function onLoadMoreBtnClick() {
+async function onLoadMoreBtnClick() {
   pixabayAPI.page += 1;
 
-  pixabayAPI
-    .fetchPhotosByQ()
-    .then(hideLoadMoreBtn)
-    .then(renderPhotos)
-    .catch(errorMessage);
+  try {
+    const fetchResult = await pixabayAPI.fetchPhotosByQ();
+
+    hideLoadMoreBtn(fetchResult);
+    renderPhotos(fetchResult);
+  } catch {
+    errorMessage();
+  }
 }
 
 function showLoadMoreBtn(res) {
-  if (res.data.totalHits >= PixabayAPI.per_page) {
+  if (res.data.totalHits > PixabayAPI.per_page) {
     loadMoreBtn.classList.remove('hidden');
   }
   return res;

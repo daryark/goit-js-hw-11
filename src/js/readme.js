@@ -10,11 +10,7 @@
 //c:   hide load more btn in that case (if is after rendering current page)
 //c: }
 
-//!6. Make async/await fn
+//works6. Make async/await fn
 //4. Make lightbox img larger open
 //10. Smooth scroll (is not mandatory)
 //11.(Sticky-btn UP) Make scroll appear on sticky-btn and smooth scroll up write in JS for it
-
-//Save working version and only then 👇
-//And finally optimize all code 👇
-//(and check one more time then)
