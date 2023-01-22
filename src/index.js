@@ -27,15 +27,20 @@ async function onSubmit(e) {
   try {
     const fetchResult = await pixabayAPI.fetchPhotosByQ();
 
-    loadMoreBtn.classList.add('hidden');
+    // loadMoreBtn.classList.add('hidden');
+    // if (res.data.totalHits <= pixabayAPI.page * PixabayAPI.per_page) {
+    //   infoMessage();
+    // }
 
     if (!fetchResult.data.hits.length) {
       throw new Error();
     }
+    hideLoadMoreBtn(fetchResult);
 
     showLoadMoreBtn(fetchResult);
     renderPhotos(fetchResult);
   } catch {
+    loadMoreBtn.classList.add('hidden');
     errorMessage();
   }
   form.reset();
